@@ -317,5 +317,27 @@ def politica_privacidad(request):
 def terminosYCondiciones(request):
     return render(request, 'App/terminosYCondiciones.html')
 
+def agregar_al_carrito(request, producto_id):
+    # Siempre obtener un diccionario, nunca una lista
+    carrito = request.session.get('carrito', {})
+    if not isinstance(carrito, dict):
+        carrito = {}
+    producto_id_str = str(producto_id)
+    cantidad = int(request.GET.get('cantidad', 1))
+    if producto_id_str in carrito:
+        carrito[producto_id_str] += cantidad
+    else:
+        carrito[producto_id_str] = cantidad
+    request.session['carrito'] = carrito
+    return redirect('carrito')
+
 def carrito(request):
-    return render(request, 'App/carrito.html')
+    carrito = request.session.get('carrito', {})
+    productos = Producto.objects.filter(id__in=carrito.keys())
+    productos_con_cantidad = []
+    for producto in productos:
+        productos_con_cantidad.append({
+            'producto': producto,
+            'cantidad': carrito[str(producto.id)]
+        })
+    return render(request, 'App/carrito.html', {'productos_con_cantidad': productos_con_cantidad})

@@ -505,7 +505,7 @@ body.dark-mode p {
                 <div>
                     <label for="cantidad" style="display: block; margin-top: 1rem; margin-bottom: 0.5rem; color: #014231;">Agregar:</label>
                     <input type="number" id="cantidad" value="1" min="1" style="width: 60px; padding: 0.4rem; border-radius: 4px; border: 1px solid #ccc;">
-                    <button onclick="" style="display: block; margin-top: 1rem; background-color: #013220; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; cursor: pointer; justify-content: righ;">Agregar al carrito</button>
+                    <button onclick="agregarAlCarrito({{ producto.id }})" style="display: block; margin-top: 1rem; background-color: #013220; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; cursor: pointer;">Agregar al carrito</button>
                 </div>
             </div>
         </div>
@@ -515,7 +515,10 @@ body.dark-mode p {
 </main>
     <button id="modoOscuroBtn">🌙 Modo Oscuro</button>
 <script>
-
+function agregarAlCarrito(productoId) {
+    var cantidad = document.getElementById('cantidad').value;
+    window.location.href = `/agregar_al_carrito/${productoId}/?cantidad=${cantidad}`;
+}
 document.addEventListener('DOMContentLoaded', function () {
     const toggleBtn = document.getElementById('menuToggle');
     const dropdownMenu = document.getElementById('dropdownMenu');

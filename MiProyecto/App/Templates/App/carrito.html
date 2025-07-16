@@ -522,7 +522,6 @@ document.addEventListener('click', function(e) {
         <tr>
             <th>ID</th>
             <th>Nombre</th>
-            <th>Producto</th>
             <th>Cantidad</th>
         </tr>
     </thead>
@@ -530,11 +529,11 @@ document.addEventListener('click', function(e) {
         {% for item in productos_con_cantidad %}
         <tr>
             <td>{{ item.producto.id }}</td>
-            <td>{{ item.producto.producto }}</td>
-            <td>{{ item.producto.cantidad }}</td>
+            <td>{{ item.producto.nombre }}</td>
+            <td>{{ item.cantidad }}</td>
         </tr>
         {% empty %}
-        <tr><td colspan="4">El carrito está vacío.</td></tr>
+        <tr><td colspan="3">El carrito está vacío.</td></tr>
         {% endfor %}
     </tbody>
 </table>

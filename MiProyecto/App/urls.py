@@ -15,6 +15,7 @@ urlpatterns = [
     path('agradecimiento/', views.agradecimiento, name='agradecimiento'),
     path('sobreNosotros/', views.sobreNosotros, name='sobreNosotros'),
     path('carrito/', views.carrito, name='carrito'),
+    path('agregar_al_carrito/<int:producto_id>/', views.agregar_al_carrito, name='agregar_al_carrito'),
     path('soporte/', views.soporte, name='soporte'),
     path('politica_privacidad/', views.politica_privacidad, name='politica_privacidad'),
     path('terminosYCondiciones/', views.terminosYCondiciones, name='terminosYCondiciones'),
