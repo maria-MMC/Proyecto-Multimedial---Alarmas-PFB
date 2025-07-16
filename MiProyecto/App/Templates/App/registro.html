@@ -330,6 +330,7 @@ body.alto-contraste .contenedor-pasos {
     </div>
 </header>
 
+
 <main>
         <!-- Botón de accesibilidad -->
     <button class="accesibilidad-btn" onclick="toggleAccMenu()" aria-label="Accesibilidad">
@@ -345,7 +346,7 @@ body.alto-contraste .contenedor-pasos {
     <div style="max-width: 500px; margin: 4rem auto; background: #e6f7f4; padding: 2rem 2.5rem; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); font-family: 'Segoe UI', sans-serif;">
     <h2 style="text-align: center; color: #014231; margin-bottom: 1.5rem;">Registro de Usuario</h2>
     <form method="post"> {% csrf_token %}
-        {{ form.as_table }}
+        {{ form.as_p }}
         <button type="submit" class="btn" style="display: block; width: 100%; background-color: #014231; color: #fff; border: none; padding: 0.7rem; border-radius: 8px; margin-top: 1.5rem; font-size: 1rem; cursor: pointer; transition: background 0.3s;">Registrarse</button>
     </form>
     <div style="text-align: center; margin-top: 2rem;">

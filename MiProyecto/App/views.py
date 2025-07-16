@@ -1,17 +1,17 @@
 # Create your views here.
-from django.shortcuts import render , redirect
+from django.shortcuts import render , redirect, get_object_or_404
 from App.models import *
-from .forms import crear_Usuarios_forms, crearProductos_forms, crearDetallePedidoForms, UserRegisterForm
+from .forms import crear_Usuarios_forms, crearProductos_forms, crearDetallePedidoForms, UsuariosForm
 from django.core.mail import EmailMessage
 from django.conf import settings
 from django.contrib import messages
 from django.template.loader import render_to_string
 from App.models import MensajeContacto
 from django.core.mail import send_mail
-from django.core.paginator import Paginator
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages 
+from django.contrib.auth.models import User
 # Create your views here.
 
 def crearProductos(request):
@@ -136,13 +136,18 @@ def contacto(request):
 
 def registro_usuario(request):
     if request.method == 'POST':
-        form = UserRegisterForm(request.POST)
+        form = UsuariosForm(request.POST)
         if form.is_valid():
-            form.save()
+            usuario = form.save()
+            user_django = User.objects.create_user(
+                username=usuario.nombre,
+                email=usuario.email,
+                password=usuario.contraseña
+            )
             messages.success(request, 'Registro exitoso! Bienvenido/a')
             return render(request, 'App/index.html')
     else:
-            form = UserRegisterForm()
+            form = UsuariosForm()
     
     return render(request, 'App/registro.html', {'form': form})
     
@@ -303,11 +308,6 @@ def agradecimiento(request):
 def sobreNosotros(request):
     return render(request, 'App/sobreNosotros.html')
 
-def carrito(request):
-    return render(request, 'App/carrito.html')
-
-
-
 def soporte(request):
     return render(request, 'App/soporte.html')
 
@@ -316,3 +316,6 @@ def politica_privacidad(request):
 
 def terminosYCondiciones(request):
     return render(request, 'App/terminosYCondiciones.html')
+
+def carrito(request):
+    return render(request, 'App/carrito.html')

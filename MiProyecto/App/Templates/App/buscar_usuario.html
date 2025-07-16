@@ -359,36 +359,25 @@ body.alto-contraste .contenedor-pasos {
   <h2 style="text-align: center; color: #014231; margin-bottom: 1.5rem; animation: fadeInDown 0.5s ease;">Buscar usuarios por email</h2>
   <form action="" method="get" style="text-align: center; margin-bottom: 2rem;">
     <input type="text" name="email" id="email" placeholder="Buscar usuario por email" list="sugerenciasEmail" style="padding: 0.5rem 1rem; border: 1px solid #ccc; border-radius: 8px; width: 80%; max-width: 400px;">
-    <datalist id="sugerenciasEmail">
-      <option value="usuario1@example.com">
-      <option value="cliente@pfb.com">
-      <option value="soporte@pfb.com">
-      <option value="admin@pfb.com">
-    </datalist>
     <br><br>
     <input type="submit" value="Buscar email de usuario" style="background-color: #014231; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 8px; cursor: pointer; transition: background 0.3s;">
   </form>
 
-  {% if usuario %}
-    {% for usuarios in usuario %}
+  {% if usuarios %}
+    {% for usuario in usuarios %}
     <table style="width: 100%; border-collapse: collapse; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
       <thead style="background-color: #dff5ef; color: #014231;">
         <tr>
           <th scope="col" style="padding: 0.8rem;">Email</th>
           <th scope="col">ID</th>
           <th scope="col">Nombre</th>
-          <th scope="col">Acciones</th>
         </tr>
       </thead>
       <tbody style="text-align: center; background: #fff;">
         <tr>
-          <td style="padding: 0.8rem;">{{ usuarios.email }}</td>
-          <td>{{ usuarios.id }}</td>
-          <td>{{ usuarios.nombre }}</td>
-          <td>
-            <a href="{% url 'editar_usuario' usuarios.id %}" style="margin-right: 0.5rem; color: #0d6efd; text-decoration: underline;">Editar</a>
-            <a href="{% url 'bloquear_usuario' usuarios.id %}" style="color: #dc3545; text-decoration: underline;">Bloquear</a>
-          </td>
+          <td style="padding: 0.8rem;">{{ usuario.email }}</td>
+          <td>{{ usuario.id }}</td>
+          <td>{{ usuario.nombre }}</td>
         </tr>
       </tbody>
     </table>

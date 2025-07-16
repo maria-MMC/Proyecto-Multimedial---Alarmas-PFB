@@ -298,6 +298,112 @@ body.alto-contraste .contenedor-pasos {
     background: #222 !important;
     color: #fff !important;
 }
+
+           /* Modo oscuro */
+    body.dark-mode {
+        background-color: #121212;
+        color: #e0e0e0;
+    }
+
+    /* Botón flotante en el borde izquierdo, centrado verticalmente */
+    #modoOscuroBtn {
+        position: fixed;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        padding: 10px 20px;
+        border: none;
+        border-radius: 0 5px 5px 0;
+        background-color: #333;
+        color: white;
+        cursor: pointer;
+        z-index: 1000;
+    }
+
+    body.dark-mode header,
+    body.dark-mode footer,
+    body.dark-mode .seccion-galeria,
+    body.dark-mode .seccion-videos,
+    body.dark-mode .seccion-presentacion,
+    body.dark-mode .contenedor-pasos {
+        background: #013220 !important;
+        color: #b2f5ea !important;
+    }
+    body.dark-mode .navbar-links a,
+    body.dark-mode .navbar-logo,
+    body.dark-mode .footer-columna a {
+        color: #b2f5ea !important;
+    }
+    body.dark-mode .dropdown-menu {
+        background-color: #222 !important;
+        color: #b2f5ea !important;
+    }
+    body.dark-mode .slider-panel {
+        background: #222 !important;
+}
+
+    body.dark-mode main,
+    body.dark-mode section,
+    body.dark-mode .slider-panel,
+    body.dark-mode .bubble {
+        background-color: #222 !important;
+        color: #95ddd1ff !important;
+    }
+    body.dark-mode section[style*="background-color: #e0f0ea"],
+    body.dark-mode section[style*="background-color: #ffffff"] {
+        background-color: #222 !important;
+        color: #b2f5ea !important;
+    }
+    body.dark-mode a,
+    body.dark-mode h1,
+    body.dark-mode h2,
+    body.dark-mode h4,
+    body.dark-mode p,
+    body.dark-mode li {
+        color: #b2f5ea !important;
+    }
+
+#modoOscuroBtn {
+    position: fixed;
+    top: 50%;
+    left: 24px;
+    transform: translateY(-50%);
+    z-index: 2000;
+    background: #014231;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 44px;      /* Más pequeño */
+    height: 44px;     /* Más pequeño */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem; /* Icono y texto más chicos */
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    padding: 0;
+}
+#modoOscuroBtn:hover, #modoOscuroBtn:focus {
+    background: #17806d;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.22);
+    outline: none;
+}
+
+/* Modo oscuro para H1 */
+body.dark-mode h1 {
+    color: #1de782 !important;
+}
+
+/* Modo oscuro para H1 */
+body.dark-mode h2 {
+    color: #1de782 !important;
+}
+
+/* Modo oscuro para H1 */
+body.dark-mode p {
+    color: #1de782 !important;
+}
     </style>
 <header>
     <div class="navbar">
@@ -335,9 +441,9 @@ body.alto-contraste .contenedor-pasos {
         </div>
     </div>
 </header>
-    <h1>CARRITO</h1>
+    
 <main>
-
+    <button id="modoOscuroBtn">🌙 Modo Oscuro</button>
 <script>
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -381,6 +487,23 @@ document.addEventListener('click', function(e) {
     }
 });
 
+    document.addEventListener('DOMContentLoaded', function () {
+    // ...otros scripts...
+
+    // MODO OSCURO SOLO AL HACER CLIC
+    const boton = document.getElementById('modoOscuroBtn');
+    if (boton) {
+        boton.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                boton.textContent = '☀️ Modo Claro';
+            } else {
+                boton.textContent = '🌙 Modo Oscuro';
+            }
+        });
+    }
+});
+
 </script>
 <!-- Botón de accesibilidad -->
 <button class="accesibilidad-btn" onclick="toggleAccMenu()" aria-label="Accesibilidad">
@@ -393,6 +516,28 @@ document.addEventListener('click', function(e) {
     <button onclick="cambiarFuente(-1)" style="width:100%;margin-bottom:0.5em;">Reducir texto</button>
     <button onclick="toggleContraste()" style="width:100%;">Alto contraste</button>
 </div>
+<h2 style="text-align:center;">Carrito de compras</h2>
+<table style="width: 90%; border-collapse: collapse; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); align-items:center; margin-left:auto; margin-right:auto;">
+    <thead style="background-color: #dff5ef; color: #014231;">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Producto</th>
+            <th>Cantidad</th>
+        </tr>
+    </thead>
+    <tbody style="text-align: center; background: #fff;">
+        {% for item in productos_con_cantidad %}
+        <tr>
+            <td>{{ item.producto.id }}</td>
+            <td>{{ item.producto.producto }}</td>
+            <td>{{ item.producto.cantidad }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4">El carrito está vacío.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
 </main>
 
 <!-- FOOTER -->

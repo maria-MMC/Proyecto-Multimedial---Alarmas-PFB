@@ -316,6 +316,112 @@ body.alto-contraste .contenedor-pasos {
     background: #222 !important;
     color: #fff !important;
 }
+
+           /* Modo oscuro */
+    body.dark-mode {
+        background-color: #121212;
+        color: #e0e0e0;
+    }
+
+    /* Botón flotante en el borde izquierdo, centrado verticalmente */
+    #modoOscuroBtn {
+        position: fixed;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        padding: 10px 20px;
+        border: none;
+        border-radius: 0 5px 5px 0;
+        background-color: #333;
+        color: white;
+        cursor: pointer;
+        z-index: 1000;
+    }
+
+    body.dark-mode header,
+    body.dark-mode footer,
+    body.dark-mode .seccion-galeria,
+    body.dark-mode .seccion-videos,
+    body.dark-mode .seccion-presentacion,
+    body.dark-mode .contenedor-pasos {
+        background: #013220 !important;
+        color: #b2f5ea !important;
+    }
+    body.dark-mode .navbar-links a,
+    body.dark-mode .navbar-logo,
+    body.dark-mode .footer-columna a {
+        color: #b2f5ea !important;
+    }
+    body.dark-mode .dropdown-menu {
+        background-color: #222 !important;
+        color: #b2f5ea !important;
+    }
+    body.dark-mode .slider-panel {
+        background: #222 !important;
+}
+
+    body.dark-mode main,
+    body.dark-mode section,
+    body.dark-mode .slider-panel,
+    body.dark-mode .bubble {
+        background-color: #222 !important;
+        color: #95ddd1ff !important;
+    }
+    body.dark-mode section[style*="background-color: #e0f0ea"],
+    body.dark-mode section[style*="background-color: #ffffff"] {
+        background-color: #222 !important;
+        color: #b2f5ea !important;
+    }
+    body.dark-mode a,
+    body.dark-mode h1,
+    body.dark-mode h2,
+    body.dark-mode h4,
+    body.dark-mode p,
+    body.dark-mode li {
+        color: #b2f5ea !important;
+    }
+
+#modoOscuroBtn {
+    position: fixed;
+    top: 50%;
+    left: 24px;
+    transform: translateY(-50%);
+    z-index: 2000;
+    background: #014231;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 44px;      /* Más pequeño */
+    height: 44px;     /* Más pequeño */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem; /* Icono y texto más chicos */
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    padding: 0;
+}
+#modoOscuroBtn:hover, #modoOscuroBtn:focus {
+    background: #17806d;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.22);
+    outline: none;
+}
+
+/* Modo oscuro para H1 */
+body.dark-mode h1 {
+    color: #1de782 !important;
+}
+
+/* Modo oscuro para H1 */
+body.dark-mode h2 {
+    color: #1de782 !important;
+}
+
+/* Modo oscuro para H1 */
+body.dark-mode p {
+    color: #1de782 !important;
+}
     </style>
 
 <header>
@@ -372,10 +478,10 @@ body.alto-contraste .contenedor-pasos {
     </div>
 
     <div id="contenedorProductos" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;">
-        {% for producto in producto %}
+    {% for producto in producto %}
         <div class="producto" style="position: relative; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 1rem; text-align: center; transition: transform 0.3s ease;">
         <span class="eliminar-icono" onclick="this.parentElement.remove();" title="Eliminar" style="display:none; position: absolute; top: 10px; right: 10px; background: #b02a2a; color: white; border-radius: 50%; width: 24px; height: 24px; font-size: 16px; line-height: 22px; cursor: pointer;">&times;</span>
-        <img src="/static/imgsindex/a6.jpeg" alt="Producto" class="imagen-producto" style="width: 100%; border-radius: 6px;">
+        <img src="{% static 'imgs_originales/imgs.1.png' %}" alt="Producto" class="imagen-producto" style="width: 100%; border-radius: 6px;">
         <h4 style="margin: 0.5rem 0; color: #013220;">{{producto.nombre}}</h4>
 
         <button onclick="mostrarDetalle(this)" style="background-color: #013220; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer;">Ver</button>
@@ -389,7 +495,7 @@ body.alto-contraste .contenedor-pasos {
         <div style="background: white; max-width: 800px; width: 90%; border-radius: 10px; display: flex; flex-wrap: wrap; padding: 2rem; gap: 2rem; position: relative;">
             <button onclick="cerrarDetalle()" style="position: absolute; top: 10px; right: 10px; background: #013220; border: none; color: white; font-size: 1.2rem; width: 32px; height: 32px; border-radius: 50%; cursor: pointer;">&times;</button>
             <div style="flex: 1; min-width: 250px;">
-                <img src="/static/img/producto_demo.jpg" alt="Detalle" style="width: 100%; border-radius: 10px;">
+                <img src="{% static 'imgs_originales/imgs.1.png' %}" alt="Detalle" style="width: 100%; border-radius: 10px;">
             </div>
             <div style="flex: 1; min-width: 250px; display: flex; flex-direction: column; justify-content: space-between;">
                 <div>
@@ -399,15 +505,15 @@ body.alto-contraste .contenedor-pasos {
                 <div>
                     <label for="cantidad" style="display: block; margin-top: 1rem; margin-bottom: 0.5rem; color: #014231;">Agregar:</label>
                     <input type="number" id="cantidad" value="1" min="1" style="width: 60px; padding: 0.4rem; border-radius: 4px; border: 1px solid #ccc;">
-                    <button onclick="window.location.href='/carrito'" style="display: block; margin-top: 1rem; background-color: #013220; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; cursor: pointer; justify-content: righ;">Agregar al carrito</button>
+                    <button onclick="" style="display: block; margin-top: 1rem; background-color: #013220; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; cursor: pointer; justify-content: righ;">Agregar al carrito</button>
                 </div>
             </div>
         </div>
         </div>
-        {% endfor %}
+    {% endfor %}
     </div>
 </main>
-
+    <button id="modoOscuroBtn">🌙 Modo Oscuro</button>
 <script>
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -485,6 +591,23 @@ function cerrarDetalle() {
         icono.style.display = 'block';
         });
     }
+
+    document.addEventListener('DOMContentLoaded', function () {
+    // ...otros scripts...
+
+    // MODO OSCURO SOLO AL HACER CLIC
+    const boton = document.getElementById('modoOscuroBtn');
+    if (boton) {
+        boton.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                boton.textContent = '☀️ Modo Claro';
+            } else {
+                boton.textContent = '🌙 Modo Oscuro';
+            }
+        });
+    }
+});
 </script>
 <!-- Botón de accesibilidad -->
 <button class="accesibilidad-btn" onclick="toggleAccMenu()" aria-label="Accesibilidad">

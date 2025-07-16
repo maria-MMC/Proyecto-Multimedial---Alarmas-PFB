@@ -367,7 +367,6 @@ body.alto-contraste .contenedor-pasos {
 <div>
     <h2 style="text-align: center; color: #013220; margin-bottom: 2rem;">Usuarios registrados</h2>
     <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-bottom: 1rem;">
-        <button title="Eliminar usuario" onclick="activarModoEliminar()" style="background-color: #b02a2a; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer;">-</button>
         <a href="{% url 'Registro' %}"
             title="Agregar un usuario"
             style="background-color: #2a7a2a; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; text-decoration: none; display: inline-block; font-weight: bold;">
@@ -381,12 +380,21 @@ body.alto-contraste .contenedor-pasos {
     </div>
     {% for usuario in usuario %}
     <div>
-        <table>
-            Nombre: {{ usuario.nombre }} <br>
-            Email: {{ usuario.email }} <br>
-            Contraseña: {{ usuario.contraseña }} <br>
-            Celular: {{ usuario.celular }}
-        </table>
+    <table style="width: 90%; border-collapse: collapse; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); align-items:center; margin-left:auto; margin-right:auto;">        <thead style="background-color: #dff5ef; color: #014231;">
+        <tr>
+            <th scope="col" style="padding: 0.8rem;">Email</th>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+        </tr>
+        </thead>
+        <tbody style="text-align: center; background: #fff;">
+        <tr>
+            <td style="padding: 0.8rem;">{{ usuario.email }}</td>
+            <td>{{ usuario.id }}</td>
+            <td>{{ usuario.nombre }}</td>
+        </tr>
+        </tbody>
+    </table>
     {% empty %}
     <p style="text-align:center; padding:20px">No hay usuarios registrados.</p>
     {% endfor %}

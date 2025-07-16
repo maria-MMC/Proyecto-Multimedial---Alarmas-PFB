@@ -701,6 +701,111 @@ body.alto-contraste .contenedor-pasos {
     color: #fff !important;
 }
 
+           /* Modo oscuro */
+    body.dark-mode {
+        background-color: #121212;
+        color: #e0e0e0;
+    }
+
+    /* Botón flotante en el borde izquierdo, centrado verticalmente */
+    #modoOscuroBtn {
+        position: fixed;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        padding: 10px 20px;
+        border: none;
+        border-radius: 0 5px 5px 0;
+        background-color: #333;
+        color: white;
+        cursor: pointer;
+        z-index: 1000;
+    }
+
+    body.dark-mode header,
+    body.dark-mode footer,
+    body.dark-mode .seccion-galeria,
+    body.dark-mode .seccion-videos,
+    body.dark-mode .seccion-presentacion,
+    body.dark-mode .contenedor-pasos {
+        background: #013220 !important;
+        color: #b2f5ea !important;
+    }
+    body.dark-mode .navbar-links a,
+    body.dark-mode .navbar-logo,
+    body.dark-mode .footer-columna a {
+        color: #b2f5ea !important;
+    }
+    body.dark-mode .dropdown-menu {
+        background-color: #222 !important;
+        color: #b2f5ea !important;
+    }
+    body.dark-mode .slider-panel {
+        background: #222 !important;
+}
+
+    body.dark-mode main,
+    body.dark-mode section,
+    body.dark-mode .slider-panel,
+    body.dark-mode .bubble {
+        background-color: #222 !important;
+        color: #95ddd1ff !important;
+    }
+    body.dark-mode section[style*="background-color: #e0f0ea"],
+    body.dark-mode section[style*="background-color: #ffffff"] {
+        background-color: #222 !important;
+        color: #b2f5ea !important;
+    }
+    body.dark-mode a,
+    body.dark-mode h1,
+    body.dark-mode h2,
+    body.dark-mode h4,
+    body.dark-mode p,
+    body.dark-mode li {
+        color: #b2f5ea !important;
+    }
+
+#modoOscuroBtn {
+    position: fixed;
+    top: 50%;
+    left: 24px;
+    transform: translateY(-50%);
+    z-index: 2000;
+    background: #014231;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 44px;      /* Más pequeño */
+    height: 44px;     /* Más pequeño */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem; /* Icono y texto más chicos */
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    padding: 0;
+}
+#modoOscuroBtn:hover, #modoOscuroBtn:focus {
+    background: #17806d;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.22);
+    outline: none;
+}
+
+/* Modo oscuro para H1 */
+body.dark-mode h1 {
+    color: #1de782 !important;
+}
+
+/* Modo oscuro para H1 */
+body.dark-mode h2 {
+    color: #1de782 !important;
+}
+
+/* Modo oscuro para H1 */
+body.dark-mode p {
+    color: #1de782 !important;
+}
 </style>
 
 <!-- Botón de accesibilidad -->
@@ -881,43 +986,101 @@ body.alto-contraste .contenedor-pasos {
     <div class="seccion-videos">
     <h3>Videos ilustrativos del producto</h3>
 
-  <section style="margin-top: 4rem; padding: 2rem; background-color: rgba(192, 240, 224, 0.3); border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: flex-start;">
-      <div style="flex: 1; max-width: 500px;">
-        <h3 style="text-align: center; color: #013220; margin-bottom: 1rem;">Video presentación de nuestro producto</h3>
-        <div class="video-contenedor">
-          <video controls>
-            <source src="{% static 'videosProducto/demo1.mp4' %}" type="video/mp4">
-            Tu navegador no soporta video HTML5.
-          </video>
+    <section style="margin-top: 4rem; padding: 2rem; background-color: rgba(192, 240, 224, 0.3); border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: flex-start;">
+        <div style="flex: 1; max-width: 500px;">
+            <h3 style="text-align: center; color: #013220; margin-bottom: 1rem;">Video presentación de nuestro producto</h3>
+            <div class="video-contenedor">
+            <video controls>
+                <source src="{% static 'videosProducto/demo1.mp4' %}" type="video/mp4">
+                Tu navegador no soporta video HTML5.
+            </video>
+            </div>
         </div>
-      </div>
-      <div style="flex: 1; min-width: 250px; max-width: 400px; color: #014231;">
-        <h4>Detalles del producto</h4>
-        <p>Con nuestras alarmas, obtienes protección 24/7, conectividad Wi-Fi y GSM, batería de respaldo y control total desde tu móvil. Su diseño compacto y moderno se adapta a cualquier hogar o negocio, brindando tranquilidad y tecnología de punta.</p>
-        <p>Fácil instalación, integración con sensores y cámaras, alertas en tiempo real y un soporte técnico siempre disponible hacen de este producto una inversión en seguridad inteligente.</p>
-      </div>
-    </div>
+        <div style="flex: 1; min-width: 250px; max-width: 400px; color: #014231;">
+            <h4>Detalles del producto</h4>
+            <p>Con nuestras alarmas, obtienes protección 24/7, conectividad Wi-Fi y GSM, batería de respaldo y control total desde tu móvil. Su diseño compacto y moderno se adapta a cualquier hogar o negocio, brindando tranquilidad y tecnología de punta.</p>
+            <p>Fácil instalación, integración con sensores y cámaras, alertas en tiempo real y un soporte técnico siempre disponible hacen de este producto una inversión en seguridad inteligente.</p>
+        </div>
+        </div>
 
-    <div style="margin-top: 3rem; max-width: 1200px; margin-left: auto; margin-right: auto; display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: flex-start;">
-      <div style="flex: 1; max-width: 500px;">
-        <h3 style="text-align: center; color: #013220; margin-bottom: 1rem;">Marketing del producto</h3>
-        <div class="video-contenedor">
-          <video controls>
-            <source src="{% static 'videosProducto/demo2.mp4' %}" type="video/mp4">
-            Tu navegador no soporta video HTML5.
-          </video>
+        <div style="margin-top: 3rem; max-width: 1200px; margin-left: auto; margin-right: auto; display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: flex-start;">
+        <div style="flex: 1; max-width: 500px;">
+            <h3 style="text-align: center; color: #013220; margin-bottom: 1rem;">Marketing del producto</h3>
+            <div class="video-contenedor">
+            <video controls>
+                <source src="{% static 'videosProducto/demo2.mp4' %}" type="video/mp4">
+                Tu navegador no soporta video HTML5.
+            </video>
+            </div>
         </div>
-      </div>
-      <div style="flex: 1; min-width: 250px; max-width: 400px; color: #014231;">
-        <h4>Estrategia de marketing</h4>
-        <p>Nuestra estrategia de marketing está centrada en mostrar la eficiencia, confianza y tecnología de nuestras alarmas. A través de campañas visuales, redes sociales y testimonios de clientes, destacamos la facilidad de uso, modernidad y seguridad que ofrecemos.</p>
-        <p>El contenido visual busca crear un vínculo emocional con el consumidor, resaltando la tranquilidad que se obtiene al contar con nuestros productos en el hogar o negocio.</p>
-      </div>
-    </div>
-  </section>
+        <div style="flex: 1; min-width: 250px; max-width: 400px; color: #014231;">
+            <h4>Estrategia de marketing</h4>
+            <p>Nuestra estrategia de marketing está centrada en mostrar la eficiencia, confianza y tecnología de nuestras alarmas. A través de campañas visuales, redes sociales y testimonios de clientes, destacamos la facilidad de uso, modernidad y seguridad que ofrecemos.</p>
+            <p>El contenido visual busca crear un vínculo emocional con el consumidor, resaltando la tranquilidad que se obtiene al contar con nuestros productos en el hogar o negocio.</p>
+        </div>
+        </div>
+</section>
+
+<!-- Botón "Ir arriba" -->
+<button id="btnArriba" style="
+    display: none;
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 3000;
+    background: #014231;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 54px;
+    height: 54px;
+    font-size: 2rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+">
+    ↑
+</button>
+
+    <button id="modoOscuroBtn">🌙 Modo Oscuro</button>
 
 <script>
+
+    // Mostrar el botón solo cuando se llega al final de la página
+window.addEventListener('scroll', function() {
+    const btn = document.getElementById('btnArriba');
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+});
+
+// Al hacer clic, sube al inicio
+document.getElementById('btnArriba').onclick = function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+    const toggleBtn = document.getElementById('menuToggle');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    function toggleMenu(e) {
+    e.stopPropagation();
+    dropdownMenu.classList.toggle('active');
+    }
+
+    function closeMenu(e) {
+    if (!dropdownMenu.contains(e.target) && !toggleBtn.contains(e.target)) {
+        dropdownMenu.classList.remove('active');
+    }
+    }
+
+    toggleBtn.addEventListener('click', toggleMenu);
+    document.addEventListener('click', closeMenu);
+});
+
 function animacionPresentacion(imgId, centralId) {
     const img = document.getElementById(imgId);
     const central = document.getElementById(centralId);
@@ -1000,6 +1163,22 @@ function toggleDislexia() {
     document.body.classList.toggle('fuente-dislexia');
 }
 
+    document.addEventListener('DOMContentLoaded', function () {
+    // ...otros scripts...
+
+    // MODO OSCURO SOLO AL HACER CLIC
+    const boton = document.getElementById('modoOscuroBtn');
+    if (boton) {
+        boton.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                boton.textContent = '☀️ Modo Claro';
+            } else {
+                boton.textContent = '🌙 Modo Oscuro';
+            }
+        });
+    }
+});
 </script>
 </main>
 

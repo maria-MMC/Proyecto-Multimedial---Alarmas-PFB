@@ -300,6 +300,112 @@ body.alto-contraste .contenedor-pasos {
     background: #222 !important;
     color: #fff !important;
 }
+
+           /* Modo oscuro */
+    body.dark-mode {
+        background-color: #121212;
+        color: #e0e0e0;
+    }
+
+    /* Botón flotante en el borde izquierdo, centrado verticalmente */
+    #modoOscuroBtn {
+        position: fixed;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        padding: 10px 20px;
+        border: none;
+        border-radius: 0 5px 5px 0;
+        background-color: #333;
+        color: white;
+        cursor: pointer;
+        z-index: 1000;
+    }
+
+    body.dark-mode header,
+    body.dark-mode footer,
+    body.dark-mode .seccion-galeria,
+    body.dark-mode .seccion-videos,
+    body.dark-mode .seccion-presentacion,
+    body.dark-mode .contenedor-pasos {
+        background: #013220 !important;
+        color: #b2f5ea !important;
+    }
+    body.dark-mode .navbar-links a,
+    body.dark-mode .navbar-logo,
+    body.dark-mode .footer-columna a {
+        color: #b2f5ea !important;
+    }
+    body.dark-mode .dropdown-menu {
+        background-color: #222 !important;
+        color: #b2f5ea !important;
+    }
+    body.dark-mode .slider-panel {
+        background: #222 !important;
+}
+
+    body.dark-mode main,
+    body.dark-mode section,
+    body.dark-mode .slider-panel,
+    body.dark-mode .bubble {
+        background-color: #222 !important;
+        color: #95ddd1ff !important;
+    }
+    body.dark-mode section[style*="background-color: #e0f0ea"],
+    body.dark-mode section[style*="background-color: #ffffff"] {
+        background-color: #222 !important;
+        color: #b2f5ea !important;
+    }
+    body.dark-mode a,
+    body.dark-mode h1,
+    body.dark-mode h2,
+    body.dark-mode h4,
+    body.dark-mode p,
+    body.dark-mode li {
+        color: #b2f5ea !important;
+    }
+
+#modoOscuroBtn {
+    position: fixed;
+    top: 50%;
+    left: 24px;
+    transform: translateY(-50%);
+    z-index: 2000;
+    background: #014231;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 44px;      /* Más pequeño */
+    height: 44px;     /* Más pequeño */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem; /* Icono y texto más chicos */
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    padding: 0;
+}
+#modoOscuroBtn:hover, #modoOscuroBtn:focus {
+    background: #17806d;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.22);
+    outline: none;
+}
+
+/* Modo oscuro para H1 */
+body.dark-mode h1 {
+    color: #1de782 !important;
+}
+
+/* Modo oscuro para H1 */
+body.dark-mode h2 {
+    color: #1de782 !important;
+}
+
+/* Modo oscuro para H1 */
+body.dark-mode p {
+    color: #1de782 !important;
+}
 </style>
 
 <header>
@@ -349,118 +455,175 @@ body.alto-contraste .contenedor-pasos {
 
 
 <main style="background-color: #f1f9f6; padding: 4rem 2rem; font-family: 'Segoe UI', sans-serif; color: #013220;">
-  <section style="max-width: 900px; margin: auto;">
-    <h1 style="font-size: 2rem; margin-bottom: 2rem; text-align: center;">Política de Privacidad y Seguridad</h1>
+    <section style="max-width: 900px; margin: auto;">
+        <h1 style="font-size: 2rem; margin-bottom: 2rem; text-align: center;">Política de Privacidad y Seguridad</h1>
 
-    <article style="margin-bottom: 2.5rem;">
-      <h2 style="font-size: 1.4rem; color: #014231; margin-bottom: 0.8rem;">1. Introducción</h2>
-      <p>
-        En <strong>Alarmas BTF</strong> nos comprometemos con la seguridad, la privacidad y la transparencia respecto a la información personal que recopilamos de nuestros usuarios. Esta política describe cómo recolectamos, usamos, almacenamos y protegemos los datos proporcionados por nuestros clientes y visitantes del sitio web.
-      </p>
-    </article>
+        <article style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.4rem; color: #014231; margin-bottom: 0.8rem;">1. Introducción</h2>
+        <p>
+            En <strong>Alarmas BTF</strong> nos comprometemos con la seguridad, la privacidad y la transparencia respecto a la información personal que recopilamos de nuestros usuarios. Esta política describe cómo recolectamos, usamos, almacenamos y protegemos los datos proporcionados por nuestros clientes y visitantes del sitio web.
+        </p>
+        </article>
 
-    <article style="margin-bottom: 2.5rem;">
-      <h2 style="font-size: 1.4rem; color: #014231; margin-bottom: 0.8rem;">2. Datos que recopilamos</h2>
-      <ul style="padding-left: 1.5rem; line-height: 1.6;">
-        <li><strong>Datos personales:</strong> nombre, correo electrónico, dirección postal, teléfono.</li>
-        <li><strong>Datos de transacción:</strong> historial de compras, métodos de pago (con pasarelas seguras).</li>
-        <li><strong>Datos técnicos:</strong> IP, navegador, dispositivo, páginas visitadas, tiempos de acceso.</li>
-        <li><strong>Preferencias de usuario:</strong> navegación, productos guardados, preferencias.</li>
-      </ul>
-    </article>
+        <article style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.4rem; color: #014231; margin-bottom: 0.8rem;">2. Datos que recopilamos</h2>
+        <ul style="padding-left: 1.5rem; line-height: 1.6;">
+            <li><strong>Datos personales:</strong> nombre, correo electrónico, dirección postal, teléfono.</li>
+            <li><strong>Datos de transacción:</strong> historial de compras, métodos de pago (con pasarelas seguras).</li>
+            <li><strong>Datos técnicos:</strong> IP, navegador, dispositivo, páginas visitadas, tiempos de acceso.</li>
+            <li><strong>Preferencias de usuario:</strong> navegación, productos guardados, preferencias.</li>
+        </ul>
+        </article>
 
-    <article style="margin-bottom: 2.5rem;">
-      <h2 style="font-size: 1.4rem; color: #014231; margin-bottom: 0.8rem;">3. Finalidades del tratamiento de datos</h2>
-      <p>
-        Los datos se utilizan para procesar pedidos, ofrecer soporte técnico, personalizar tu experiencia, enviar notificaciones y mejorar nuestros servicios.
-      </p>
-    </article>
+        <article style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.4rem; color: #014231; margin-bottom: 0.8rem;">3. Finalidades del tratamiento de datos</h2>
+        <p>
+            Los datos se utilizan para procesar pedidos, ofrecer soporte técnico, personalizar tu experiencia, enviar notificaciones y mejorar nuestros servicios.
+        </p>
+        </article>
 
-    <article style="margin-bottom: 2.5rem;">
-      <h2 style="font-size: 1.4rem; color: #014231; margin-bottom: 0.8rem;">4. Seguridad de la información</h2>
-      <p>
-        Utilizamos cifrado SSL, servidores seguros, accesos restringidos, monitoreo de intrusiones y copias de seguridad constantes para proteger tu información.
-      </p>
-    </article>
+        <article style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.4rem; color: #014231; margin-bottom: 0.8rem;">4. Seguridad de la información</h2>
+        <p>
+            Utilizamos cifrado SSL, servidores seguros, accesos restringidos, monitoreo de intrusiones y copias de seguridad constantes para proteger tu información.
+        </p>
+        </article>
 
-    <article style="margin-bottom: 2.5rem;">
-      <h2 style="font-size: 1.4rem; color: #014231; margin-bottom: 0.8rem;">5. Política de cookies</h2>
-      <p>
-        Empleamos cookies para mejorar la experiencia del usuario. Puedes desactivarlas desde tu navegador. Más información en nuestra Política de Cookies.
-      </p>
-    </article>
+        <article style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.4rem; color: #014231; margin-bottom: 0.8rem;">5. Política de cookies</h2>
+        <p>
+            Empleamos cookies para mejorar la experiencia del usuario. Puedes desactivarlas desde tu navegador. Más información en nuestra Política de Cookies.
+        </p>
+        </article>
 
-    <article style="margin-bottom: 2.5rem;">
-      <h2 style="font-size: 1.4rem; color: #014231; margin-bottom: 0.8rem;">6. Conservación de los datos</h2>
-      <p>
-        Conservamos los datos mientras haya relación comercial, por requerimiento legal o hasta que solicites su eliminación.
-      </p>
-    </article>
+        <article style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.4rem; color: #014231; margin-bottom: 0.8rem;">6. Conservación de los datos</h2>
+        <p>
+            Conservamos los datos mientras haya relación comercial, por requerimiento legal o hasta que solicites su eliminación.
+        </p>
+        </article>
 
-    <article style="margin-bottom: 2.5rem;">
-      <h2 style="font-size: 1.4rem; color: #014231; margin-bottom: 0.8rem;">7. Derechos del usuario</h2>
-      <ul style="padding-left: 1.5rem; line-height: 1.6;">
-        <li>Acceder a tus datos</li>
-        <li>Solicitar rectificación o eliminación</li>
-        <li>Oponerte o limitar su uso</li>
-        <li>Solicitar portabilidad</li>
-      </ul>
-      <p>
-        Puedes ejercer estos derechos mediante correo o el formulario de contacto.
-      </p>
-    </article>
+        <article style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.4rem; color: #014231; margin-bottom: 0.8rem;">7. Derechos del usuario</h2>
+        <ul style="padding-left: 1.5rem; line-height: 1.6;">
+            <li>Acceder a tus datos</li>
+            <li>Solicitar rectificación o eliminación</li>
+            <li>Oponerte o limitar su uso</li>
+            <li>Solicitar portabilidad</li>
+        </ul>
+        <p>
+            Puedes ejercer estos derechos mediante correo o el formulario de contacto.
+        </p>
+        </article>
 
-    <article style="margin-bottom: 2.5rem;">
-      <h2 style="font-size: 1.4rem; color: #014231; margin-bottom: 0.8rem;">8. Seguridad de los productos</h2>
-      <ul style="padding-left: 1.5rem; line-height: 1.6;">
-        <li>Cifrado inalámbrico avanzado</li>
-        <li>Conectividad GSM y Wi-Fi</li>
-        <li>Control desde aplicación móvil</li>
-        <li>Alertas en tiempo real</li>
-        <li>Batería de respaldo</li>
-      </ul>
-    </article>
+        <article style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.4rem; color: #014231; margin-bottom: 0.8rem;">8. Seguridad de los productos</h2>
+        <ul style="padding-left: 1.5rem; line-height: 1.6;">
+            <li>Cifrado inalámbrico avanzado</li>
+            <li>Conectividad GSM y Wi-Fi</li>
+            <li>Control desde aplicación móvil</li>
+            <li>Alertas en tiempo real</li>
+            <li>Batería de respaldo</li>
+        </ul>
+        </article>
 
-    <article style="margin-bottom: 2.5rem;">
-      <h2 style="font-size: 1.4rem; color: #014231; margin-bottom: 0.8rem;">9. Compartición de datos</h2>
-      <p>
-        No compartimos información salvo por requerimiento legal, procesamiento de pagos o servicios externos con obligación de confidencialidad.
-      </p>
-    </article>
+        <article style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.4rem; color: #014231; margin-bottom: 0.8rem;">9. Compartición de datos</h2>
+        <p>
+            No compartimos información salvo por requerimiento legal, procesamiento de pagos o servicios externos con obligación de confidencialidad.
+        </p>
+        </article>
 
-    <article style="margin-bottom: 2.5rem;">
-      <h2 style="font-size: 1.4rem; color: #014231; margin-bottom: 0.8rem;">10. Cambios en la política</h2>
-      <p>
-        Podemos actualizar esta política por motivos legales o de mejora del servicio. Notificaremos los cambios en la web o por correo si es necesario.
-      </p>
-    </article>
+        <article style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.4rem; color: #014231; margin-bottom: 0.8rem;">10. Cambios en la política</h2>
+        <p>
+            Podemos actualizar esta política por motivos legales o de mejora del servicio. Notificaremos los cambios en la web o por correo si es necesario.
+        </p>
+        </article>
 
-    <article>
-      <h2 style="font-size: 1.4rem; color: #014231; margin-bottom: 0.8rem;">11. Contacto</h2>
-      <p>
-        Para cualquier duda o solicitud, contáctanos en:<br>
-        📧 <strong>ventas@alarmasbtf.com</strong><br>
-        📞 <strong>+54 911 1234 1324</strong><br>
-        O desde nuestro <a href="/contacto" style="color: #00593b;">formulario de contacto</a>.
-      </p>
-    </article>
-  </section>
+        <article>
+        <h2 style="font-size: 1.4rem; color: #014231; margin-bottom: 0.8rem;">11. Contacto</h2>
+        <p>
+            Para cualquier duda o solicitud, contáctanos en:<br>
+            📧 <strong>ventas@alarmasbtf.com</strong><br>
+            📞 <strong>+54 911 1234 1324</strong><br>
+            O desde nuestro <a href="/contacto" style="color: #00593b;">formulario de contacto</a>.
+        </p>
+        </article>
+</section>
+
+    <!-- Botón "Ir arriba" -->
+<button id="btnArriba" style="
+    display: none;
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 3000;
+    background: #014231;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 54px;
+    height: 54px;
+    font-size: 2rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+">
+    ↑
+</button>
+
+    <button id="modoOscuroBtn">🌙 Modo Oscuro</button>
 
 <script>
+
+// Mostrar el botón solo cuando se llega al final de la página
+window.addEventListener('scroll', function() {
+    const btn = document.getElementById('btnArriba');
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+});
+
+// Al hacer clic, sube al inicio
+document.getElementById('btnArriba').onclick = function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+};
 
 document.addEventListener('DOMContentLoaded', function () {
     const toggleBtn = document.getElementById('menuToggle');
     const dropdownMenu = document.getElementById('dropdownMenu');
 
     function toggleMenu(e) {
-      e.stopPropagation();
-      dropdownMenu.classList.toggle('active');
+    e.stopPropagation();
+    dropdownMenu.classList.toggle('active');
     }
 
     function closeMenu(e) {
-      if (!dropdownMenu.contains(e.target) && !toggleBtn.contains(e.target)) {
+    if (!dropdownMenu.contains(e.target) && !toggleBtn.contains(e.target)) {
         dropdownMenu.classList.remove('active');
-      }
+    }
+    }
+
+    toggleBtn.addEventListener('click', toggleMenu);
+    document.addEventListener('click', closeMenu);
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const toggleBtn = document.getElementById('menuToggle');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    function toggleMenu(e) {
+        e.stopPropagation();
+        dropdownMenu.classList.toggle('active');
+    }
+
+    function closeMenu(e) {
+        if (!dropdownMenu.contains(e.target) && !toggleBtn.contains(e.target)) {
+            dropdownMenu.classList.remove('active');
+        }
     }
 
     toggleBtn.addEventListener('click', toggleMenu);
@@ -511,9 +674,25 @@ function toggleDislexia() {
     document.body.classList.toggle('fuente-dislexia');
 }
 
+    document.addEventListener('DOMContentLoaded', function () {
+    // ...otros scripts...
+
+    // MODO OSCURO SOLO AL HACER CLIC
+    const boton = document.getElementById('modoOscuroBtn');
+    if (boton) {
+        boton.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                boton.textContent = '☀️ Modo Claro';
+            } else {
+                boton.textContent = '🌙 Modo Oscuro';
+            }
+        });
+    }
+});
 </script>
 
-  <!-- Botón de accesibilidad -->
+<!-- Botón de accesibilidad -->
 <button class="accesibilidad-btn" onclick="toggleAccMenu()" aria-label="Accesibilidad">
     <i class="fas fa-universal-access"></i>
 </button>
