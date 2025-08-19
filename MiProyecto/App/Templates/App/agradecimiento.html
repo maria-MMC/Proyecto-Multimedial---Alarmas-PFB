@@ -1,0 +1,85 @@
+{% extends 'App/base.html' %}
+{% load static %}
+
+{% block title %}
+    ¡Gracias por tu mensaje!
+{% endblock title %}
+
+{% block codigoDinamico %}
+<div class="agradecimiento-contenedor">
+    <div class="agradecimiento-card">
+        <div class="agradecimiento-icono">
+            <span class="fa-stack fa-2x" style="vertical-align: middle;">
+                <i class="fa-solid fa-circle fa-stack-2x" style="color: #01906e;"></i>
+                <i class="fa-solid fa-check fa-stack-1x" style="color: #fff;"></i>
+            </span>
+        </div>
+        <h1>¡Gracias por contactarnos!</h1>
+        <p>Hemos recibido tu mensaje y nos pondremos en contacto contigo lo antes posible.</p>
+        <a href="{% url 'home' %}" class="btn-volver">Volver a la Página Principal</a>
+    </div>
+</div>
+<!-- Botón de accesibilidad -->
+<button class="accesibilidad-btn" onclick="toggleAccMenu()" aria-label="Accesibilidad">
+    <i class="fas fa-universal-access"></i>
+</button>
+<div id="accesibilidad-menu" style="display:none; position:fixed; top:50%; right:90px; transform:translateY(-50%); background:#fff; color:#013220; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.18); padding:1.2rem 1.5rem; z-index:2100; min-width:180px;">
+    <strong style="font-size:1.1rem;">Accesibilidad</strong>
+    <hr style="margin:0.5em 0 1em 0;">
+    <button onclick="cambiarFuente(1)" style="width:100%;margin-bottom:0.5em;">Aumentar texto</button>
+    <button onclick="cambiarFuente(-1)" style="width:100%;margin-bottom:0.5em;">Reducir texto</button>
+    <button onclick="toggleContraste()" style="width:100%;">Alto contraste</button>
+</div>
+<style>
+.agradecimiento-contenedor {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(90deg, #e0f8f3 60%, #c0e6df 100%);
+    padding: 2rem 0;
+}
+.agradecimiento-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 6px 24px rgba(1, 50, 32, 0.10);
+    padding: 2.5rem 2.5rem 2rem 2.5rem;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.agradecimiento-icono {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1.2rem;
+}
+.agradecimiento-card h1 {
+    color: #013220;
+    font-size: 2rem;
+    margin-bottom: 0.7rem;
+}
+.agradecimiento-card p {
+    color: #1a1a1a;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+.btn-volver {
+    background: #013220;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.7rem 2.2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+    display: inline-block;
+}
+.btn-volver:hover {
+    background: #01906e;
+}
+</style>
+{% endblock codigoDinamico %}

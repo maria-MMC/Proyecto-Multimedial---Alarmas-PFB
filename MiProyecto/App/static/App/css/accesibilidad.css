@@ -1,0 +1,96 @@
+/* Botón de accesibilidad fijo y visible */
+.accesibilidad-btn {
+    position: fixed;
+    top: 50%;
+    right: 24px;
+    transform: translateY(-50%);
+    z-index: 2000;
+    background: #014231;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+.accesibilidad-btn:hover, .accesibilidad-btn:focus {
+    background: #17806d;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.22);
+    outline: none;
+}
+#accesibilidad-menu button {
+    background: #014231;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.4em 0.6em;
+    margin-bottom: 0.3em;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+}
+#accesibilidad-menu button:hover {
+    background: #17806d;
+}
+
+#accesibilidad-menu button {
+    font-size: 0.92rem !important;
+    padding: 0.3em 0.2em !important;
+    margin-bottom: 0.3em !important;
+    min-width: 0 !important;
+}
+.alto-contraste {
+    background-color: #000 !important;
+    color: #0f0 !important;
+}
+.cursor-grande * {
+    cursor: url('/static/ImagenesNuevas/cursor.jpg'), auto !important;
+}
+.fuente-dislexia {
+    font-family: 'OpenDyslexic', Arial, sans-serif !important;
+}
+.alto-contraste header,
+.alto-contraste footer,
+.alto-contraste .seccion-galeria,
+.alto-contraste .seccion-videos,
+.alto-contraste .seccion-presentacion,
+.alto-contraste .contenedor-pasos,
+.alto-contraste a,
+.alto-contraste button,
+.alto-contraste input,
+.alto-contraste label,
+.alto-contraste,
+.alto-contraste main,
+.alto-contraste div,
+.alto-contraste section,
+.alto-contraste h1,
+.alto-contraste h2,
+.alto-contraste h4,
+.alto-contraste li,
+.alto-contraste p {
+    border-color: #fff !important;
+    background: #222 !important;
+    color: #fff !important;
+}
+
+    @keyframes fadeInLeft {
+        from { opacity: 0; transform: translateX(-40px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeInRight {
+        from { opacity: 0; transform: translateX(40px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+

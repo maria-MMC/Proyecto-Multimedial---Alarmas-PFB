@@ -1,0 +1,278 @@
+{% extends 'App/base.html' %}
+{% load static %}
+
+{% block title %}
+    Inicio
+{% endblock %}
+
+{% block codigoDinamico %}
+    <style>
+    main {
+        padding: 2rem;
+        text-align: center;
+        animation: slideIn 1s ease-out;
+    }
+    @keyframes slideIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .carrito-contenedor {
+        max-width: 900px;
+        margin: 2rem auto;
+        background: #e6f7f4;
+        border-radius: 16px;
+        box-shadow: 0 2px 8px #17806d33;
+        padding: 2rem;
+    }
+    .carrito-titulo {
+        color: #013220;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    .carrito-lista {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 2rem;
+    }
+    .carrito-lista th, .carrito-lista td {
+        padding: 1rem;
+        border-bottom: 1px solid #b2dfdb;
+        text-align: center;
+        color: #014231;
+    }
+    .carrito-lista th {
+        background: #013220;
+        color: #fff;
+    }
+    .carrito-btn {
+        background-color: #013220;
+        color: white;
+        border: none;
+        padding: 0.7rem 1.5rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        font-weight: bold;
+        transition: background 0.2s;
+    }
+    .carrito-btn:hover {
+        background: #17806d;
+    }
+    .carrito-vacio {
+        text-align: center;
+        color: #b02a2a;
+        font-size: 1.1rem;
+        margin: 2rem 0;
+    }
+    </style>
+<header>
+    <div class="navbar">
+        <a href="/" class="navbar-logo">
+        <span class="navbar-logo-icon">🔒</span>
+        Alarmas PFB
+        </a>
+
+        <nav class="navbar-links">
+        <a href="/">Inicio</a>
+        <a href="{% url 'productos' %}">Productos</a>
+        <a href="{% url 'contacto' %}">Contacto</a>
+        <a href="{% url 'sobreNosotros' %}">Nuestra Alarma</a>
+        <a href="{% url 'guia' %}">Guía</a>
+        <a href="{% url 'faq' %}">Preguntas Frecuentes</a>
+        </nav>
+
+        <div class="navbar-actions">
+        <button class="action-btn" onclick="window.location.href='{% url 'carrito' %}'">
+            🛒
+        </button>
+
+        <button id="menuToggle" class="action-btn">☰</button>
+
+        <div id="dropdownMenu" class="dropdown-menu">
+            {% if request.user.is_authenticated %}
+            <button onclick="window.location.href='{% url 'logout' %}'">Cerrar sesión</button>
+            {% else %}
+            <button onclick="window.location.href='{% url 'login' %}'">Inicio de sesión</button>
+            <button onclick="window.location.href='{% url 'soporte' %}'">Soporte</button>
+            {% endif %}
+        </div>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="carrito-contenedor">
+        <h2 class="carrito-titulo">🛒 Carrito de Compras</h2>
+        <form id="formCarrito" method="post" action="{% url 'enviar_pedido' %}">
+            {% csrf_token %}
+            <table class="carrito-lista" id="tablaCarrito">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody id="carritoBody">
+                    <!-- Los productos se agregan aquí con JS -->
+                </tbody>
+            </table>
+            <button type="submit" class="carrito-btn" id="btnTerminarPedido">Terminar pedido</button>
+        </form>
+        <div class="carrito-vacio" id="carritoVacio" style="display:none;">
+            El carrito está vacío.
+        </div>
+    </div>
+</main>
+<script>
+function obtenerCarrito() {
+    return JSON.parse(localStorage.getItem('carrito')) || [];
+}
+function guardarCarrito(carrito) {
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+}
+function renderizarCarrito() {
+    const carrito = obtenerCarrito();
+    const tbody = document.getElementById('carritoBody');
+    const vacioDiv = document.getElementById('carritoVacio');
+    tbody.innerHTML = '';
+    if (carrito.length === 0) {
+        vacioDiv.style.display = 'block';
+        return;
+    } else {
+        vacioDiv.style.display = 'none';
+    }
+    carrito.forEach((item, idx) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${item.id}</td>
+            <td>${item.nombre}</td>
+            <td>
+                <input type="number" min="1" value="${item.cantidad}" style="width:60px;" onchange="actualizarCantidad(${idx}, this.value)">
+            </td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+function actualizarCantidad(idx, nuevaCantidad) {
+    let carrito = obtenerCarrito();
+    carrito[idx].cantidad = parseInt(nuevaCantidad);
+    guardarCarrito(carrito);
+    renderizarCarrito();
+}
+
+// Al enviar el formulario, envía los datos del carrito como JSON en un campo oculto
+document.getElementById('formCarrito').addEventListener('submit', function(e) {
+    const carrito = obtenerCarrito();
+    if (carrito.length === 0) {
+        e.preventDefault();
+        alert('El carrito está vacío.');
+        return false;
+    }
+    let input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'carrito_json';
+    input.value = JSON.stringify(carrito);
+    this.appendChild(input);
+    // Limpia el carrito después de enviar
+    localStorage.removeItem('carrito');
+});
+
+// Renderiza el carrito al cargar la página
+document.addEventListener('DOMContentLoaded', renderizarCarrito);
+
+document.addEventListener('DOMContentLoaded', function () {
+    const toggleBtn = document.getElementById('menuToggle');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    function toggleMenu(e) {
+        e.stopPropagation();
+        dropdownMenu.classList.toggle('active');
+    }
+
+    function closeMenu(e) {
+        if (!dropdownMenu.contains(e.target) && !toggleBtn.contains(e.target)) {
+        dropdownMenu.classList.remove('active');
+        }
+    }
+
+    toggleBtn.addEventListener('click', toggleMenu);
+    document.addEventListener('click', closeMenu);
+});
+
+let fuenteBase = 100;
+function toggleAccMenu() {
+    const menu = document.getElementById('accesibilidad-menu');
+    menu.style.display = (menu.style.display === 'none' || menu.style.display === '') ? 'block' : 'none';
+}
+function cambiarFuente(delta) {
+    fuenteBase += delta * 10;
+    if (fuenteBase < 80) fuenteBase = 80;
+    if (fuenteBase > 160) fuenteBase = 160;
+    document.body.style.fontSize = fuenteBase + '%';
+}
+function toggleContraste() {
+    document.body.classList.toggle('alto-contraste');
+}
+document.addEventListener('click', function(e) {
+    const menu = document.getElementById('accesibilidad-menu');
+    const btn = document.querySelector('.accesibilidad-btn');
+    if (menu.style.display === 'block' && !menu.contains(e.target) && !btn.contains(e.target)) {
+        menu.style.display = 'none';
+    }
+});
+
+</script>
+<!-- Botón de accesibilidad -->
+<button class="accesibilidad-btn" onclick="toggleAccMenu()" aria-label="Accesibilidad">
+    <i class="fas fa-universal-access"></i>
+</button>
+<div id="accesibilidad-menu" style="display:none; position:fixed; top:50%; right:90px; transform:translateY(-50%); background:#fff; color:#013220; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.18); padding:1.2rem 1.5rem; z-index:2100; min-width:180px;">
+    <strong style="font-size:1.1rem;">Accesibilidad</strong>
+    <hr style="margin:0.5em 0 1em 0;">
+    <button onclick="cambiarFuente(1)" style="width:100%;margin-bottom:0.5em;">Aumentar texto</button>
+    <button onclick="cambiarFuente(-1)" style="width:100%;margin-bottom:0.5em;">Reducir texto</button>
+    <button onclick="toggleContraste()" style="width:100%;">Alto contraste</button>
+</div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-contenedor">
+        <!-- Columna 1 -->
+        <div class="footer-columna">
+        <h4>Redes Sociales</h4>
+        <a href="https://www.facebook.com" target="_blank">
+            <span class="footer-icono">📘</span> Facebook
+        </a>
+        <a href="https://www.youtube.com" target="_blank">
+            <span class="footer-icono">▶️</span> YouTube
+        </a>
+        <a href="https://www.instagram.com" target="_blank">
+            <span class="footer-icono">📸</span> Instagram
+        </a>
+        </div>
+
+        <!-- Columna 2 -->
+        <div class="footer-columna">
+        <h4>Enlaces</h4>
+        <a href="/">Inicio</a>
+        <a href="/productos">Productos</a>
+        <a href="/contacto">Contacto</a>
+        <a href="/guia">Guía</a>
+        <a href="/faq">FAQ</a>
+        </div>
+
+        <!-- Columna 3 -->
+        <div class="footer-columna">
+        <h4>Información</h4>
+        <a href="/politica_privacidad">Política y privacidad</a>
+        <a href="/terminosYCondiciones">Terminos y condiciones</a>
+        <a href="/productos">Dónde comprar</a>
+        </div>
+    </div>
+
+    <div class="footer-derechos">
+        © {{ now.year }} Alarmas PFB. Todos los derechos reservados.
+    </div>
+</footer>
+{% endblock %}

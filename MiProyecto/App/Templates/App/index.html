@@ -1,0 +1,213 @@
+{% extends 'App/base.html' %}
+{% load static %}
+
+{% block title %}
+    Inicio
+{% endblock %}
+
+{% block codigoDinamico %}
+<header>
+    <div class="navbar">
+        <a href="/" class="navbar-logo">
+        <span class="navbar-logo-icon">🔒</span>
+        Alarmas PFB
+        </a>
+
+        <nav class="navbar-links">
+        <a href="/">Inicio</a>
+        <a href="{% url 'productos' %}">Productos</a>
+        <a href="{% url 'contacto' %}">Contacto</a>
+        <a href="{% url 'sobreNosotros' %}">Nuestra Alarma</a>
+        <a href="{% url 'guia' %}">Guía</a>
+        <a href="{% url 'faq' %}">Preguntas Frecuentes</a>
+        </nav>
+
+        <div class="navbar-actions">
+        <button class="action-btn" onclick="window.location.href='{% url 'carrito' %}'">
+            🛒
+        </button>
+
+        <button id="menuToggle" class="action-btn">☰</button>
+
+        <div id="dropdownMenu" class="dropdown-menu">
+            {% if request.user.is_authenticated %}
+            <button onclick="window.location.href='{% url 'logout' %}'">Cerrar sesión</button>
+            {% else %}
+            <button onclick="window.location.href='{% url 'login' %}'">Inicio de sesión</button>
+            <button onclick="window.location.href='{% url 'soporte' %}'">Soporte</button>
+            {% endif %}
+        </div>
+        </div>
+    </div>
+</header>
+
+<main style="font-family: 'Segoe UI', sans-serif; background-color: #f1f9f6;">
+    <!-- Sección de bienvenida y productos destacados -->
+    <section style="width: 100%; padding: 4rem 2rem; background-color: #e0f0ea; text-align: center;">
+        <div style="max-width: 1000px; margin: auto; background-color: white; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); padding: 2rem;">
+            <h1 style="color: #013220; font-size:50px">Bienvenidos a <br> Protection For Boys</h1>
+            <p style="margin: 1rem auto 2rem; max-width: 600px; color: #014231; font-size:20px">Gracias por confiar en nosotros. <br> Te ofrecemos lo último en seguridad para tu hogar.</p>
+            <h2 style="margin-bottom: 2rem; color: #014231;">Nuestros productos más seleccionados</h2>
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <div class="slider-panel" style="width: 300px; overflow: hidden; position: relative; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+            <div class="slider-track" style="display: flex; transition: transform 0.5s ease;">
+            <img src="{% static 'ImagenesNuevas/ImagenNueva9.jpg' %}" style="width: 300px;">
+            </div>
+        </div>
+        <!-- Repetir 2 veces más -->
+        <div class="slider-panel" style="width: 300px; overflow: hidden; position: relative; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+            <div class="slider-track" style="display: flex; transition: transform 0.5s ease;">
+                <img src="{% static 'ImagenesNuevas/ImagenNueva4.jpg' %}" style="width: 300px;">
+            </div>
+        </div>
+        <div class="slider-panel" style="width: 300px; overflow: hidden; position: relative; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+            <div class="slider-track" style="display: flex; transition: transform 0.5s ease;">
+                <img src="{% static 'ImagenesNuevas/ImagenNueva3.jpg' %}" style="width: 300px;">
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
+
+<!-- Nueva sección: Imagen + Datos del producto -->
+    <section style="padding: 4rem 2rem; background-color: #ffffff;">
+        <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 2rem;">
+            <div style="flex: 1; min-width: 300px; animation: fadeInLeft 1s ease;">
+            <img src="{% static 'ImagenesNuevas/ImagenNueva2.jpg' %}" alt="Producto Detalle" style="width: 400px; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
+            </div>
+            <div style="flex: 1; min-width: 300px; animation: fadeInRight 1s ease;">
+            <h2 style="color: #013220; font-size: 1.8rem;">Procesos de nuestro producto</h2>
+                <ul style="margin: 1rem 0; padding-left: 1.2rem; color: #014231;">
+                    <li>Placa electrónica</li>
+                    <li>Batería de 9 volts</li>
+                    <li>Imán de proximidad</li>
+                    <li>Respiración y rejilla de alarmas</li>
+                </ul>
+                <p style="margin-bottom: 1rem; color: #014231;">¿Quieres saber más de este producto?</p>
+                <a href="{% url 'sobreNosotros' %}" style="display: inline-block; background-color: #013220; color: white; padding: 0.7rem 1.2rem; border-radius: 6px; text-decoration: none; font-weight: bold;">Clickea acá</a>
+            </div>
+        </div>
+    </section>
+
+<!-- Sección final: ¿Por qué elegirnos? -->
+    <section style="padding: 5rem 2rem; background-color: #013220; color: white; text-align: center; position: relative;">
+        <h2 style="font-size: 2rem; margin-bottom: 2rem;">¿Por qué elegirnos?</h2>
+        <div style="position: relative; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 2rem;">
+            <div style="width: 200px; height: 200px; border-radius: 50%; background-color: white; display: flex; align-items: center; justify-content: center; animation: spin 10s linear infinite;">
+            <img src="/static/imgsindex/a8.png" alt="Alarma animada" style="width: 100px;">
+            </div>
+
+            <div style="max-width: 800px; display: flex; flex-wrap: wrap; justify-content: space-around; margin-top: 3rem;">
+                <div style="width: 220px;">
+                <h4>📍 Cobertura Nacional</h4>
+                <p>Vive tranquilo en cualquier parte del país</p>
+                </div>
+                <div style="width: 220px;">
+                <h4>🏭 Industria Argentina</h4>
+                <p>Diseñado especialmente para nuestro mercado</p>
+                </div>
+                <div style="width: 220px;">
+                <h4>📞 Servicio Post Venta</h4>
+                <p>Asistencia técnica permanente</p>
+                </div>
+                <div style="width: 220px;">
+                <h4>💡 Diseño Personalizado</h4>
+                <p>Nos adaptamos a tus necesidades</p>
+                </div>
+                <div style="width: 220px;">
+                <h4>🔒 Protección 24/7</h4>
+                <p>Seguridad todo el año</p>
+                </div>
+                <div style="width: 220px;">
+                <h4>✅ Garantía</h4>
+                <p>Hasta 5 años en nuestros productos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Burbujas animadas de fondo -->
+<div class="bubble bubble1"></div>
+<div class="bubble bubble2"></div>
+<div class="bubble bubble3"></div>
+<div class="bubble bubble4"></div>
+<div class="bubble bubble5"></div>
+
+<!-- Botón "Ir arriba" -->
+<button id="btnArriba" style="
+    display: none;
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 3000;
+    background: #014231;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 54px;
+    height: 54px;
+    font-size: 2rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+">
+    ↑
+</button>
+<!-- Botón de accesibilidad -->
+<button class="accesibilidad-btn" onclick="toggleAccMenu()" aria-label="Accesibilidad">
+    <img src="/static/ImagenesNuevas/ImagenNueva10.png" style="width: 40px; height:40px;">
+</button>
+<div id="accesibilidad-menu" style="display:none; position:fixed; top:50%; right:90px; transform:translateY(-50%); background:#fff; color:#013220; border-radius:10px; box-shadow:0 4px 16px rgba(0,0,0,0.18); padding:0.7rem 1rem; z-index:2100; min-width:140px; max-width:180px;">
+    <strong style="font-size:1rem;">Accesibilidad</strong>
+    <hr style="margin:0.4em 0 0.7em 0;">
+    <button onclick="cambiarFuente(2)" style="width:100%;margin-bottom:0.3em; font-size:0.92rem; padding:0.3em 0.2em;">Aumentar</button>
+    <button onclick="cambiarFuente(-1)" style="width:100%;margin-bottom:0.3em; font-size:0.92rem; padding:0.3em 0.2em;">Reducir</button>
+    <button onclick="toggleContraste()" style="width:100%;margin-bottom:0.3em; font-size:0.92rem; padding:0.3em 0.2em;">Contraste</button>
+    <button onclick="toggleSubtitulos()" style="width:100%;margin-bottom:0.3em; font-size:0.92rem; padding:0.3em 0.2em;">Subtítulos</button>
+    <button onclick="toggleLectura()" style="width:100%;margin-bottom:0.3em; font-size:0.92rem; padding:0.3em 0.2em;">Lectura</button>
+    <button onclick="detenerLectura()" style="width:100%;margin-bottom:0.3em; font-size:0.92rem; padding:0.3em 0.2em;">Detener</button>
+    <button onclick="toggleCursorGrande()" style="width:100%;margin-bottom:0.3em; font-size:0.92rem; padding:0.3em 0.2em;">Cursor</button>
+    <button onclick="toggleDislexia()" style="width:100%; font-size:0.92rem; padding:0.3em 0.2em;">Dislexia</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-contenedor">
+        <!-- Columna 1 -->
+        <div class="footer-columna">
+        <h4>Redes Sociales</h4>
+        <a href="https://www.facebook.com" target="_blank">
+            <span class="footer-icono">📘</span> Facebook
+        </a>
+        <a href="https://www.youtube.com" target="_blank">
+            <span class="footer-icono">▶️</span> YouTube
+        </a>
+        <a href="https://www.instagram.com" target="_blank">
+            <span class="footer-icono">📸</span> Instagram
+        </a>
+        </div>
+
+        <!-- Columna 2 -->
+        <div class="footer-columna">
+        <h4>Enlaces</h4>
+        <a href="/">Inicio</a>
+        <a href="/productos">Productos</a>
+        <a href="/contacto">Contacto</a>
+        <a href="/guia">Guía</a>
+        <a href="/faq">FAQ</a>
+        </div>
+
+        <!-- Columna 3 -->
+        <div class="footer-columna">
+        <h4>Información</h4>
+        <a href="/politica_privacidad">Política y privacidad</a>
+        <a href="/terminosYCondiciones">Terminos y condiciones</a>
+        <a href="/productos">Dónde comprar</a>
+        </div>
+    </div>
+
+    <div class="footer-derechos">
+        © {{ now.year }} Alarmas PFB. Todos los derechos reservados.
+    </div>
+</footer>
+{% endblock %}

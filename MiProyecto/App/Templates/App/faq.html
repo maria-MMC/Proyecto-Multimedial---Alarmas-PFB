@@ -1,0 +1,407 @@
+{% extends 'App/base.html' %}
+{% load static %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block codigoDinamico %}
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: #f0f8f6; /* Fondo más oscuro para toda la página */
+    }
+
+    header {
+    background: linear-gradient(90deg, #013220 0%, #1a1a1a 100%);
+    padding: 0.5rem 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    position: relative;
+    }
+    .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .navbar-logo {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #b2f5ea;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+    }
+    .navbar-logo-icon {
+        margin-right: 0.5rem;
+        font-size: 2rem;
+    }
+
+    .navbar-links {
+        display: flex;
+        gap: 1.8rem;
+        animation: fadeInNav 1s ease-out;
+    }
+    .navbar-links a {
+        text-decoration: none;
+        color: #b2f5ea;
+        font-size: 1.1rem;
+        padding: 0.4rem 1rem;
+        border-radius: 5px;
+        transition: background 0.2s, color 0.2s;
+    }
+    .navbar-links a:hover {
+        background: #004d3b;
+        color: #fff;
+    }
+
+    @keyframes fadeInNav {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .navbar-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        position: relative;
+    }
+    .action-btn {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        color: #b2f5ea;
+        font-size: 1.4rem;
+        padding: 0.3rem;
+        transition: color 0.2s;
+    }
+    .action-btn:hover {
+        color: #fff;
+    }
+
+    .dropdown-menu {
+        position: fixed;
+        top: 60px; /* 🔁 antes: 0 → ahora: 60px */
+        right: -300px;
+        width: 250px;
+        height: calc(100% - 60px); /* para que no sobresalga */
+        background-color: #f0f8f6;
+        box-shadow: -2px 0 12px rgba(0,0,0,0.2);
+        padding: 2rem 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        transition: right 0.4s ease;
+        z-index: 1000;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+    
+    .dropdown-menu.active {
+        right: 0;
+    }
+
+    .action-btn {
+        background-color: transparent;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        margin-left: 1rem;
+        color: #b2f5ea;
+        transition: color 0.2s;
+        z-index: 1100;
+    }
+
+    .dropdown-menu button {
+        background-color: #013220;
+        color: white;
+        border: none;
+        padding: 0.7rem 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        text-align: left;
+        font-size: 1rem;
+        transition: background 0.3s;
+    }
+
+    .dropdown-menu button:hover {
+        background-color: #026b4f;
+    }
+.faq summary {
+    font-weight: bold;
+    color: #17806d;
+    cursor: pointer;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px #17806d22;
+    list-style: none;
+    transition: background-color 0.3s ease;
+}
+
+.faq[open] summary {
+    background-color: #d9f4ee;
+}
+
+.faq div {
+    margin-top: 0.7rem;
+    padding: 0 1rem 1rem 1rem;
+    color: #14544a;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+</style>
+<header>
+    <div class="navbar">
+        <a href="/" class="navbar-logo">
+        <span class="navbar-logo-icon">🔒</span>
+        Alarmas PFB
+        </a>
+
+        <nav class="navbar-links">
+        <a href="/">Inicio</a>
+        <a href="{% url 'productos' %}">Productos</a>
+        <a href="{% url 'contacto' %}">Contacto</a>
+        <a href="{% url 'sobreNosotros' %}">Nuestra Alarma</a>
+        <a href="{% url 'guia' %}">Guía</a>
+        <a href="{% url 'faq' %}">Preguntas Frecuentes</a>
+        </nav>
+
+        <div class="navbar-actions">
+        <button class="action-btn" onclick="window.location.href='{% url 'carrito' %}'">
+            🛒
+        </button>
+
+        <button id="menuToggle" class="action-btn">☰</button>
+
+        <div id="dropdownMenu" class="dropdown-menu">
+            {% if request.user.is_authenticated %}
+            <button onclick="window.location.href='{% url 'logout' %}'">Cerrar sesión</button>
+            {% else %}
+            <button onclick="window.location.href='{% url 'login' %}'">Inicio de sesión</button>
+            <button onclick="window.location.href='{% url 'soporte' %}'">Soporte</button>
+            {% endif %}
+        </div>
+        </div>
+    </div>
+</header>
+</header>
+<main>
+    <!-- Burbujas animadas de fondo -->
+<div class="bubble bubble1"></div>
+<div class="bubble bubble2"></div>
+<div class="bubble bubble3"></div>
+<div class="bubble bubble4"></div>
+<div class="bubble bubble5"></div>
+
+<div style="max-width: 700px; margin: 2rem auto; background: #e6f7f4; border-radius: 16px; box-shadow: 0 2px 8px #17806d33; padding: 2rem;">
+    <h1 style="text-align: center; color: #17806d; margin-bottom: 1.5rem;">Preguntas frecuentes</h1>
+    <p style="text-align: center; color: #14544a; font-size: 1.1rem;">
+        En esta sección encontrarás respuestas a las preguntas más comunes sobre <strong>Alarmas PFB</strong>.
+    </p>
+    <hr style="margin: 2rem 0; border-color: #b2e5db;">
+
+    <div style="margin: 0 auto; max-width: 600px;">
+        <!-- Preguntas originales -->
+        <div style="margin-bottom: 1.2rem;">
+            <details class="faq">
+            <summary>¿Qué es la alarma PFB?</summary>
+            <div>Es una alarma portátil de seguridad que funciona mediante un sensor electromagnético.</div>
+            </details>
+        </div>
+        <div style="margin-bottom: 1.2rem;">
+            <details class="faq">
+            <summary>¿A quién está dirigido PFB?</summary>
+            <div>Está dirigida a adultos responsables del cuidado de niños o mascotas, así como personas que desean más tranquilidad en su hogar. Es útil para evitar accesos peligrosos o no deseados a ciertos espacios.</div>
+            </details>
+        </div>
+        <div style="margin-bottom: 1.2rem;">
+            <details class="faq">
+            <summary>¿Es posible personalizar el color o diseño del producto?</summary>
+            <div>El cliente puede elegir entre resina transparente o versiones opacas de color disponible.</div>
+            </details>
+        </div>
+        <div style="margin-bottom: 1.2rem;">
+            <details class="faq">
+            <summary>¿Requiere instalación especializada?</summary>
+            <div>Junto a su compra puede solicitar el servicio de instalación. No obstante, puede realizarla siguiendo los pasos de instalación haciendo clic <a href="{% url 'guia' %}">aquí</a></div>
+            </details>
+        </div>
+        <div style="margin-bottom: 1.2rem;">
+            <details class="faq">
+            <summary>¿Qué garantía tiene el producto?</summary>
+            <div>Todos los dispositivos PFB cuentan con una garantía limitada de tres meses que cubre defectos de fabricación y fallos técnicos no atribuibles a mal uso. 👉 Consultá los términos de la garantía haciendo clic aquí</div>
+            </details>
+        </div>
+        <div style="margin-bottom: 1.2rem;">
+            <details class="faq">
+            <summary>¿Cuál es la fuente de energía del dispositivo?</summary>
+            <div>Funciona con una batería de 9V, que se puede cambiar fácilmente gracias a un sistema de presión con limitantes en la tapa.</div>
+            </details>
+        </div>
+
+        <div style="margin-bottom: 1.2rem;">
+            <details class="faq">
+            <summary>¿Se puede usar en exteriores?</summary>
+            <div>La alarma está diseñada principalmente para uso interior, aunque ciertos modelos resistentes al agua pueden utilizarse en exteriores protegidos.</div>
+            </details>
+        </div>
+        <div style="margin-bottom: 1.2rem;">
+            <details class="faq">
+            <summary>¿Cómo puedo adquirir repuestos?</summary>
+            <div>Los repuestos están disponibles en nuestra tienda oficial y distribuidores autorizados. También puedes solicitarlos a través del soporte.</div>
+            </details>
+        </div>
+        <div style="margin-bottom: 1.2rem;">
+            <details class="faq">
+            <summary>¿Qué métodos de pago aceptan?</summary>
+            <div>Aceptamos tarjetas de crédito, débito, transferencia bancaria.</div>
+            </details>
+        </div>
+        <div style="margin-bottom: 1.2rem;">
+            <details class="faq">
+            <summary>¿Puedo controlar la alarma desde el móvil?</summary>
+            <div>Sí. Nuestra app permite activar/desactivar el sistema, revisar notificaciones y administrar usuarios desde cualquier lugar.</div>
+            </details>
+        </div>
+        <div style="margin-bottom: 1.2rem;">
+            <details class="faq">
+            <summary>¿Puedo instalar más de una alarma?</summary>
+            <div>Por supuesto. Puedes conectar múltiples dispositivos a tu cuenta y controlarlos desde una misma app.</div>
+            </details>
+        </div>
+        </div>
+    </div>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+    const toggleBtn = document.getElementById('menuToggle');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    function toggleMenu(e) {
+        e.stopPropagation();
+        dropdownMenu.classList.toggle('active');
+    }
+
+    function closeMenu(e) {
+        if (!dropdownMenu.contains(e.target) && !toggleBtn.contains(e.target)) {
+        dropdownMenu.classList.remove('active');
+        }
+    }
+
+    toggleBtn.addEventListener('click', toggleMenu);
+    document.addEventListener('click', closeMenu);
+});
+
+
+function toggleAccMenu() {
+    const menu = document.getElementById('accesibilidad-menu');
+    menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+}
+
+function cambiarFuente(factor) {
+    document.body.style.fontSize = (parseFloat(getComputedStyle(document.body).fontSize) + factor) + 'px';
+}
+
+function toggleContraste() {
+    document.body.classList.toggle('alto-contraste');
+}
+
+function toggleSubtitulos() {
+    alert('Función de subtítulos simulada para usuarios sordos.');
+}
+
+let lecturaActiva = false;
+let lecturaObj;
+
+function toggleLectura() {
+    if (!lecturaActiva) {
+        const texto = document.body.innerText;
+        lecturaObj = new SpeechSynthesisUtterance(texto);
+        window.speechSynthesis.speak(lecturaObj);
+        lecturaActiva = true;
+    }
+}
+
+function detenerLectura() {
+    if (lecturaActiva) {
+        window.speechSynthesis.cancel();
+        lecturaActiva = false;
+    }
+}
+
+function toggleCursorGrande() {
+    document.body.classList.toggle('cursor-grande');
+}
+
+function toggleDislexia() {
+    document.body.classList.toggle('fuente-dislexia');
+}
+
+</script>
+  <!-- Botón de accesibilidad -->
+<button class="accesibilidad-btn" onclick="toggleAccMenu()" aria-label="Accesibilidad">
+    <i class="fas fa-universal-access"></i>
+</button>
+<div id="accesibilidad-menu" style="display:none; position:fixed; top:50%; right:90px; transform:translateY(-50%); background:#fff; color:#013220; border-radius:10px; box-shadow:0 4px 16px rgba(0,0,0,0.18); padding:0.7rem 1rem; z-index:2100; min-width:140px; max-width:180px;">
+    <strong style="font-size:1rem;">Accesibilidad</strong>
+    <hr style="margin:0.4em 0 0.7em 0;">
+    <button onclick="cambiarFuente(1)" style="width:100%;margin-bottom:0.3em; font-size:0.92rem; padding:0.3em 0.2em;">Aumentar</button>
+    <button onclick="cambiarFuente(-1)" style="width:100%;margin-bottom:0.3em; font-size:0.92rem; padding:0.3em 0.2em;">Reducir</button>
+    <button onclick="toggleContraste()" style="width:100%;margin-bottom:0.3em; font-size:0.92rem; padding:0.3em 0.2em;">Contraste</button>
+    <button onclick="toggleSubtitulos()" style="width:100%;margin-bottom:0.3em; font-size:0.92rem; padding:0.3em 0.2em;">Subtítulos</button>
+    <button onclick="toggleLectura()" style="width:100%;margin-bottom:0.3em; font-size:0.92rem; padding:0.3em 0.2em;">Lectura</button>
+    <button onclick="detenerLectura()" style="width:100%;margin-bottom:0.3em; font-size:0.92rem; padding:0.3em 0.2em;">Detener</button>
+    <button onclick="toggleCursorGrande()" style="width:100%;margin-bottom:0.3em; font-size:0.92rem; padding:0.3em 0.2em;">Cursor</button>
+    <button onclick="toggleDislexia()" style="width:100%; font-size:0.92rem; padding:0.3em 0.2em;">Dislexia</button>
+</div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-contenedor">
+        <!-- Columna 1 -->
+        <div class="footer-columna">
+        <h4>Redes Sociales</h4>
+        <a href="https://www.facebook.com" target="_blank">
+            <span class="footer-icono">📘</span> Facebook
+        </a>
+        <a href="https://www.youtube.com" target="_blank">
+            <span class="footer-icono">▶️</span> YouTube
+        </a>
+        <a href="https://www.instagram.com" target="_blank">
+            <span class="footer-icono">📸</span> Instagram
+        </a>
+        </div>
+
+        <!-- Columna 2 -->
+        <div class="footer-columna">
+        <h4>Enlaces</h4>
+        <a href="/">Inicio</a>
+        <a href="/productos">Productos</a>
+        <a href="/contacto">Contacto</a>
+        <a href="/guia">Guía</a>
+        <a href="/faq">FAQ</a>
+        </div>
+
+        <!-- Columna 3 -->
+        <div class="footer-columna">
+        <h4>Información</h4>
+        <a href="/politica_privacidad">Política y privacidad</a>
+        <a href="/terminosYCondiciones">Terminos y condiciones</a>
+        <a href="/productos">Dónde comprar</a>
+        </div>
+    </div>
+
+    <div class="footer-derechos">
+        © {{ now.year }} Alarmas PFB. Todos los derechos reservados.
+    </div>
+</footer>
+{% endblock %}

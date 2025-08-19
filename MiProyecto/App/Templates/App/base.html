@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Estilos generales -->
+    <link rel="stylesheet" href="{% static 'App/css/general.css' %}">
+    <link rel="stylesheet" href="{% static 'App/css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'App/css/accesibilidad.css' %}">
+    <link rel="stylesheet" href="{% static 'App/css/burbujas.css' %}">
+    <link rel="stylesheet" href="{% static 'App/css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/antijingoist/open-dyslexic/webkit/OpenDyslexic.css">
+
+    <!-- Font Awesome (íconos de accesibilidad y demás) -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1B1t1f6VQ7Fvudc9Q9n9tWn9QHRx9VQNlf8N1zZkZ4l+V3z4h7bbpJxG4OH6LQm+DQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+
+    <!-- Bloque dinámico para títulos -->
+    <title>{% block title %}Inicio{% endblock %}</title>
+
+    <!-- Espacio para CSS adicional de cada página -->
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <!-- Contenido dinámico de cada página -->
+    {% block codigoDinamico %}
+    {% endblock %}
+
+    <!-- Scripts globales -->
+    <script src="{% static 'App/js/script.js' %}"></script>
+
+    <!-- Bloque para JS adicional -->
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

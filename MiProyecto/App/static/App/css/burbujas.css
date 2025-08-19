@@ -1,0 +1,19 @@
+    /* Animación de burbujas en el fondo */
+    .bubble {
+        position: fixed;
+        border-radius: 50%;
+        opacity: 0.18;
+        z-index: 0;
+        animation: floatBubbles 14s linear infinite;
+        pointer-events: none;
+    }
+    .bubble1 { width: 120px; height: 120px; left: 5vw; bottom: 10vh; background: #b2e5db; animation-delay: 0s;}
+    .bubble2 { width: 80px; height: 80px; left: 80vw; bottom: 20vh; background: #17806d; animation-delay: 3s;}
+    .bubble3 { width: 60px; height: 60px; left: 50vw; bottom: 5vh; background: #b2e5db; animation-delay: 6s;}
+    .bubble4 { width: 100px; height: 100px; left: 20vw; bottom: 30vh; background: #17806d; animation-delay: 8s;}
+    .bubble5 { width: 70px; height: 70px; left: 65vw; bottom: 40vh; background: #b2e5db; animation-delay: 11s;}
+    @keyframes floatBubbles {
+        0% { transform: translateY(0) scale(1);}
+        50% { opacity: 0.25;}
+        100% { transform: translateY(-120px) scale(1.1); opacity: 0.12;}
+    }
